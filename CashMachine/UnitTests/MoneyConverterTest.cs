@@ -12,7 +12,7 @@ namespace UnitTests
         [Test]
         [TestCase(10.45, 10, 45)]
         [TestCase(9.99, 9, 99)]
-        public void ShouldConverMoneyObject(decimal value, int expectedNote, int expectedCoin)
+        public void ShouldConvertMoneyObject(decimal value, int expectedNote, int expectedCoin)
         {
             var result = value.ConvertToMoney();
             Assert.IsTrue(result.Notes == expectedNote);

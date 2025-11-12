@@ -9,16 +9,16 @@ namespace CashMachine
     {
         private readonly IMoneyHolder _coinsHolder;
         private readonly IMoneyHolder _notesHolder;
-        private readonly IMoneyInterator _notesInterator;
-        private readonly IMoneyInterator _coinsInterator;
+        private readonly IMoneyIterator _notesIterator;
+        private readonly IMoneyIterator _coinsIterator;
 
-        public Account(IMoneyHolder notesHolder, IMoneyHolder coinsHolder, IMoneyInterator notesInterator,
-            IMoneyInterator coinsInterator)
+        public Account(IMoneyHolder notesHolder, IMoneyHolder coinsHolder, IMoneyIterator notesIterator,
+            IMoneyIterator coinsIterator)
         {
-            this._coinsHolder = coinsHolder;
-            this._notesHolder = notesHolder;
-            this._notesInterator = notesInterator;
-            this._coinsInterator = coinsInterator;
+            _coinsHolder = coinsHolder;
+            _notesHolder = notesHolder;
+            _notesIterator = notesIterator;
+            _coinsIterator = coinsIterator;
         }
 
         public bool CanWithdraw(decimal amount)
@@ -38,17 +38,17 @@ namespace CashMachine
             var money = amount.ConvertToMoney();
             return new WithdrawMoneyResults()
             {
-                Notes = dispenseMoney(money.Notes, _notesInterator, _notesHolder),
-                Coins = dispenseMoney(money.Coins, _coinsInterator, _coinsHolder)
+                Notes = DispenseMoney(money.Notes, _notesIterator, _notesHolder),
+                Coins = DispenseMoney(money.Coins, _coinsIterator, _coinsHolder)
             };
         }
 
-        private Dictionary<int, int> dispenseMoney(int amount, IMoneyInterator interator, IMoneyHolder moneyHolder)
+        private Dictionary<int, int> DispenseMoney(int amount, IMoneyIterator iterator, IMoneyHolder moneyHolder)
         {
             var returnNotes = new Dictionary<int, int>();
             while (amount > 0)
             {
-                var keyValue = interator.GetKeyValuePair(moneyHolder, amount);
+                var keyValue = iterator.GetKeyValuePair(moneyHolder, amount);
 
                 int reminder = amount % keyValue.Key;
                 int total = amount / keyValue.Key;

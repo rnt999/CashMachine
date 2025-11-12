@@ -30,9 +30,9 @@ namespace UnitTests
         }
 
         [Test]
-        public void ShouldWitdrawalAmoutWhenInput120ForAlg1()
+        public void ShouldWithdrawAmountWhenInput120ForAlg1()
         {
-            IMoneyInterator alg1 = new InteratorAlg1();
+            IMoneyIterator alg1 = new InteratorAlg1();
             IAccount account = new Account(_notes, _coins, alg1, alg1);
             var results = account.WithdrawMoney(120);
 
@@ -42,10 +42,10 @@ namespace UnitTests
         }
 
         [Test]
-        public void ShouldWitdrawalAmoutWhenInput120ForAlg2()
+        public void ShouldWithdrawAmountWhenInput120ForAlg2()
         {
-            IMoneyInterator alg1 = new InteratorAlg1();
-            IMoneyInterator alg2 = new InteratorAlg2();
+            IMoneyIterator alg1 = new InteratorAlg1();
+            IMoneyIterator alg2 = new InteratorAlg2();
             IAccount account = new Account(_notes, _coins, alg2, alg1);
             var results = account.WithdrawMoney(120);
 
@@ -56,7 +56,7 @@ namespace UnitTests
         [Test]
         public void ShouldGetBalance()
         {
-            IMoneyInterator alg1 = new InteratorAlg1();
+            IMoneyIterator alg1 = new InteratorAlg1();
             IAccount account = new Account(_notes, _coins, alg1, alg1);
             var results = account.GetBalance();
             Assert.AreEqual(results, 4638);

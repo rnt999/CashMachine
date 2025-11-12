@@ -10,6 +10,10 @@ namespace CashMachine
         public void DisplayResults(WithdrawMoneyResults results, decimal balance)
         {
             Console.Write(string.Join(", ", from note in results.Notes select $"£{note.Key}*{note.Value}"));
+            if (results.Notes.Count > 0 && results.Coins.Count > 0)
+            {
+                Console.Write(", ");
+            }
             Console.Write(string.Join(", ", from coin in results.Coins select $"£{coin.Key / 100.00}*{coin.Value}"));
             Console.WriteLine();
             Console.WriteLine($"£{balance} balance");

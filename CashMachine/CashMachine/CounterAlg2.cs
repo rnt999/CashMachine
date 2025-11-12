@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CashMachine
 {
-    public class InteratorAlg2 : IMoneyInterator
+    public class InteratorAlg2 : IMoneyIterator
     {
         private readonly int _priorityKey = 20;
         public KeyValuePair<int, int> GetKeyValuePair(IMoneyHolder moneyHolder, int amount)

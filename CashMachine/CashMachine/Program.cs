@@ -21,8 +21,8 @@ namespace CashMachine
             _notes[2] = 100;
             _notes[1] = 100;
 
-            IMoneyInterator alg1 = new InteratorAlg1();
-            IMoneyInterator alg2 = new InteratorAlg2();
+            IMoneyIterator alg1 = new InteratorAlg1();
+            IMoneyIterator alg2 = new InteratorAlg2();
 
             var _continue = true;
             do

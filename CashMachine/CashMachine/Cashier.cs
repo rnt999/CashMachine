@@ -12,19 +12,19 @@ namespace CashMachine
 
         public Cashier(IResultViewer resultViewer, IAccount account)
         {
-            this._resultViewer = resultViewer;
-            this._account = account;
+            _resultViewer = resultViewer;
+            _account = account;
         }
         public void WithdrawMoney(decimal amount)
         {
             if (_account.CanWithdraw(amount))
             {
                 var returnMoney = _account.WithdrawMoney(amount);
-                var balance = this._account.GetBalance();
+                var balance = _account.GetBalance();
                 _resultViewer.DisplayResults(returnMoney, balance);
             }
             else {
-                _resultViewer.ShowMessage("Not enouth funds!");
+                _resultViewer.ShowMessage("Not enough funds!");
             }
             
         }
